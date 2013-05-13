@@ -5,12 +5,13 @@ from django.template import RequestContext
 
 
 def foto_vista(request):
-	if request.method == 'POST':
-		formulario = FormFoto(request.POST, request.FILES)
-		if formulario.is_valid():
-			formulario.save()
-			return HttpResponseRedirect('/')
-	else:
-		formulario = FormFoto()
-	ctx = {'formulario': formulario}
-	return render_to_response('index.html', ctx, context_instance = RequestContext(request) )
+    if request.method == 'POST':
+        print request.FILES
+        formulario = FormFoto(request.POST, request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/')
+    else:
+        formulario = FormFoto()
+    ctx = {'formulario': formulario}
+    return render_to_response('index.html', ctx, context_instance = RequestContext(request) )
